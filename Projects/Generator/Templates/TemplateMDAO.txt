@@ -1,0 +1,196 @@
+﻿//
+//  @string.entitiy@DAO.m
+//  Maiden
+//
+//  Created by Kamal on 7/31/17.
+//  Copyright © 2017 BookMEDS. All rights reserved.
+//
+
+#import "@string.entitiy@DAO.h"
+#import "@string.entitiy@Modal.h"
+//#import "JsonRecord.h"
+
+static @string.entitiy@DAO *shared@string.entitiy@DAO;
+
+@implementation @string.entitiy@DAO
+
++(@string.entitiy@DAO *)sharedModel
+{
+    if (!shared@string.entitiy@DAO) {
+        shared@string.entitiy@DAO = [[@string.entitiy@DAO alloc] init];
+    }
+    return shared@string.entitiy@DAO;
+}
+
+-(BOOL)saveItem:(@string.entitiy@Modal *)@string.entitiy.lower@Item{
+    
+    FMDatabaseQueue *dbQueue_@string.entitiy@ = [self fmDataQueue];
+    
+    [dbQueue_@string.entitiy@ inDatabase:^(FMDatabase *database) {
+
+
+		//BOOL exists = [self isExists:@"name" WithValue:@string.entitiy.lower@Item.Name withTable:@"@string.entitiy@"];
+
+		@string.generateJsonRecord.string@
+
+		NSString *query;
+            
+		if (exists == YES)
+		{
+			//  exists so Update
+			NSLog(@"@string.entitiy@ items exists so Update");
+
+			query = @string.Update.string@
+                
+		}
+		else
+		{
+			// not exists so insert
+			NSLog(@"not exists so insert");
+
+			query = @string.insert.string@
+                
+		}
+            
+            
+		int result = [db executeUpdate:query];
+            
+		if (!result) {
+			NSLog(@"Failed To Insert -444-\"%@\"",query);
+		}else{
+			NSLog(@"@string.entitiy@ InserttSUCC -- %d",result);
+		}
+    }];
+    
+    return TRUE;
+    
+}
+
+-(BOOL)saveItems:(NSArray *)@string.entitiy.lower@Items{
+    
+    FMDatabaseQueue *dbQueue_@string.entitiy@ = [self fmDataQueue];
+    
+    [dbQueue_@string.entitiy@ inDatabase:^(FMDatabase *database) {
+        
+        
+        for (@string.entitiy@Modal *@string.entitiy.lower@Item in @string.entitiy.lower@Items)
+        {
+            //BOOL exists = [self isExists:@"name" WithValue:@string.entitiy.lower@Item.Name withTable:@"@string.entitiy@"];
+
+			@string.generateJsonRecord.string@
+            
+
+            NSString *query;
+            
+            if (exists == YES)
+            {
+                //  exists so Update
+                NSLog(@"@string.entitiy@ items exists so Update");
+
+               query = @string.Update.string@
+                
+            }
+            else
+            {
+                // not exists so insert
+                NSLog(@"not exists so insert");
+
+				query = @string.insert.string@
+                
+            }
+            
+            
+            int result = [db executeUpdate:query];
+            
+            if (!result) {
+                NSLog(@"Failed To Insert -444-\"%@\"",query);
+            }else{
+                NSLog(@"@string.entitiy@ InserttSUCC -- %d",result);
+            }
+        }
+        
+        
+    }];
+    
+    return TRUE;
+    
+}
+
+@string.generateProperties.string@
+
+
+-(NSMutableArray *)getAllItems{
+    
+    
+    NSString * query = [NSString stringWithFormat:@"select * from @string.table@"];
+    
+    NSMutableArray *@string.entitiy.lower@Items =[[NSMutableArray alloc] init];
+    
+    FMResultSet *rs = [db executeQuery:query];
+    
+    while (rs.next )
+    {
+        
+        @string.entitiy@Modal * @string.entitiy.lower@Obj = [self convertDBRowToToolBar:rs];
+        [@string.entitiy.lower@Items addObject:@string.entitiy.lower@Obj];
+        
+    }
+    return @string.entitiy.lower@Items;
+    
+}
+
+-(@string.entitiy@Modal *)get@string.entitiy@ForColumn:(NSString *)column WithValue:(NSString*)value{
+
+    NSString * query = [NSString stringWithFormat:@"select * from @string.table@ where %@ = '%@'",column, value];
+    
+    @string.entitiy@Modal * @string.entitiy.lower@Obj = [[@string.entitiy@Modal alloc] init];
+    
+    FMResultSet *rs = [db executeQuery:query];
+    
+    while (rs.next )
+    {
+        @string.entitiy.lower@Obj = [self convertDBRowToToolBar:rs];
+    }
+    
+    return @string.entitiy.lower@Obj;
+}
+
+-(NSMutableArray *)get@string.entitiy@sForColumn:(NSString *)column WithValue:(NSString*)value{
+    
+    NSString *query = [NSString stringWithFormat:@"select  from @string.table@ where %@ = '%@'",column, value];
+    
+    FMResultSet *rs = [db executeQuery:query];
+    
+    NSMutableArray *@string.entitiy.lower@Items =[[NSMutableArray alloc] init];
+    
+    while (rs.next )
+    {
+        @string.entitiy@Modal * @string.entitiy.lower@Obj = [self convertDBRowToToolBar:rs];
+        [@string.entitiy.lower@Items addObject:@string.entitiy.lower@Obj];
+
+    }
+    
+    return @string.entitiy.lower@Items;
+}
+
+@string.search.m@
+
+/*
+-(@string.entitiy@Modal *)get@string.entitiy@ForName:(NSString *)name{
+    
+    return [self get@string.entitiy@ForColumn:@"name" WithValue:name];
+}
+
+
+-(@string.entitiy@Modal *)get@string.entitiy@ForLabel:(NSString *)name{
+    
+    return [self get@string.entitiy@ForColumn:@"label" WithValue:name];
+}
+
+
+- (BOOL)getCurrentToolBarName:(NSString *)name
+{
+    return [self isExists:@"name" WithValue: name];
+}*/
+
+@end

@@ -1,0 +1,21 @@
+﻿//
+//  @string.entitiy@DAO.h
+//  Maiden
+//
+//  Created by Kamal on 7/31/17.
+//  Copyright © 2017 BookMEDS. All rights reserved.
+//
+
+#import "BaseDAO.h"
+#import "@string.entitiy@Modal.h"
+
+@interface @string.entitiy@DAO : BaseDAO
+
++(@string.entitiy@DAO *)sharedModel;
+-(BOOL)saveItem:(@string.entitiy@Modal *)@string.entitiy.lower@Item;
+-(BOOL)saveItems:(NSArray *)@string.entitiy.lower@Items;
+-(NSMutableArray *)getAllItems;
+-(NSMutableArray *)get@string.entitiy@sForColumn:(NSString *)column WithValue:(NSString*)value;
+@string.search.h@
+
+@end

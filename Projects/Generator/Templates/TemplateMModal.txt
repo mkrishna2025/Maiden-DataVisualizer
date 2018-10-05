@@ -1,0 +1,61 @@
+﻿//
+//  @string.entitiy@Modal.m
+//  Maiden
+//
+//  Created by Kamal on 7/31/17.
+//  Copyright © 2017 BookMEDS. All rights reserved.
+//
+
+#import "@string.entitiy@Modal.h"
+static @string.entitiy@Modal *shared@string.entitiy@Modal;
+
+@implementation @string.entitiy@Modal
+
++(@string.entitiy@Modal *)sharedModel
+{
+    if (!shared@string.entitiy@Modal) {
+        shared@string.entitiy@Modal = [[@string.entitiy@Modal alloc] init];
+    }
+    return shared@string.entitiy@Modal;
+}
+
+-(NSMutableArray *)convertDictionaryToObjectArray:(NSDictionary *)dictionary
+{
+    
+    NSMutableArray *array = [[NSMutableArray alloc] init];
+
+    
+    NSMutableArray * arrayObj = [dictionary valueForKey:@"Response"];
+    
+	for (NSDictionary * dict in arrayObj) {
+        
+		@string.entitiy@Modal * @string.entitiy.lower@Obj = [[@string.entitiy@Modal alloc] init];
+		
+		@string.generateConversationString.string@
+		@string.generateImageConversationString.string@
+
+		[array addObject:@string.entitiy.lower@Obj];
+        
+	}
+    
+    return array;
+
+}
+
+-(void) createTable{
+
+ // Getting the database path.
+    NSArray  *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *docsPath = [paths objectAtIndex:0];
+    NSString *dbPath = [docsPath stringByAppendingPathComponent:@"Maiden.db"];
+    
+    FMDatabase *database = [FMDatabase databaseWithPath:dbPath];
+    [database open];
+    [database executeUpdate:@"@string.create.string@"];
+    [database close];
+
+
+	/*create table if not exists participants (ID INTEGER PRIMARY KEY AUTOINCREMENT ,activityGuid varchar(255),communityGuid varchar(255),isAdmin bool,isCommunity bool,isInhirited bool,isInvitation bool,isParticipant bool,ownerGuid varchar(255), ownerName varchar(255), partitionKey varchar(255),userGuid varchar(255),userGuidTrimmed varchar(255), phoneNumber varchar(255), nickName varchar(255), imageObj varchar(255), isZibme_Community bool, isZibme_User bool,sinked_To_Server bool, isDeleted bool )*/
+}
+
+@end
