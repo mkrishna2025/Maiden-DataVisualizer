@@ -1,21 +1,9 @@
-﻿using Microsoft.Azure;
-using Microsoft.WindowsAzure.Storage;
-using Microsoft.WindowsAzure.Storage.Table;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Net;
-using System.Net.Security;
 using System.Reflection;
-using System.Runtime.Serialization.Json;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Generator
@@ -605,85 +593,6 @@ namespace Generator
 		private void Form1_Load(object sender, EventArgs e)
 		{
 			GenerateFiles();
-		}
-		
-	}
-
-	public class CustomerEntity : TableEntity
-	{
-		public CustomerEntity(string lastName, string firstName)
-		{
-			this.PartitionKey = lastName;
-			this.RowKey = firstName;
-		}
-
-		public CustomerEntity() { }
-
-		public string Email { get; set; }
-
-		public string PhoneNumber { get; set; }
-	}
-
-	public class PushNotificationJson
-	{
-		public string MessageBody { get; set; }
-
-		public string ActivityGuid { get; set; }
-
-		public string ActivityType { get; set; }
-
-		public string MessageTime { get; set; }
-
-		public string ParentActivityGuid { get; set; }
-
-		public string SenderName { get; set; }
-
-		public string SenderId { get; set; }
-
-		public string MessageType { get; set; }
-	}
-
-	public class IOSPushModel
-	{
-		public IOSPushModel()
-		{
-			this.aps = new apss();
-		}
-
-		public apss aps { get; set; }
-
-		public class apss
-		{
-			public string alert { get; set; }
-			public string sound { get; set; }
-			public int PictureId { get; set; }
-			public string SenderId { get; set; }
-			public int StoreId { get; set; }
-			public int ReceiverId { get; set; }
-			public string TimeStamp { get; set; }
-			public string UserType { get; set; }
-			public int MediaId { get; set; }
-			public string PasswordSalt { get; set; }
-			public string APIFor { get; set; }
-			public byte[] ChatPictureBinary { get; set; }
-			public string SeoFilename { get; set; }
-			public string MimeType { get; set; }
-			public byte[] ThumbNailBinary { get; set; }
-			public string PictureType { get; set; }
-			public string MessageType { get; set; }
-			public int ActivityId { get; set; }
-			public string MessageBody { get; set; }
-			public string CustomerName { get; set; }
-			public int CustomerId { get; set; }
-			public int OrderId { get; set; }
-			public int OrderStatusFromId { get; set; }
-			public int OrderStatusToId { get; set; }
-			public int PharmacyId { get; set; }
-			public string PharmacyName { get; set; }
-			public string Message { get; set; }
-			public string SenderName { get; set; }
-			public string ReceiverName { get; set; }
-			public string LoginType { get; set; }
 		}
 	}
 }
