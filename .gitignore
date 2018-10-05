@@ -1,0 +1,5 @@
+Projects/FrontEnd/build/
+Projects/FrontEnd/node_modules/
+Projects/FrontEnd/yarn.lock
+Projects/FrontEnd/debug.log
+Projects/FrontEnd/package-lock.json
